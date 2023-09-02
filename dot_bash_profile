@@ -1,0 +1,91 @@
+#CUSTOM TERMINAL
+export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[35m\]\h:\[\033[32;1m\]\w\[\033[m\]\$ "
+export CLICOLOR=1
+#export LSCOLORS=ExFxBxDxCxegedabagacad
+export LSCOLORS=GxBxCxDxexegedabagaced
+
+#alias maria
+alias lr='ls -lrth'
+alias ll='ls -l'
+alias sourcealias='source ~/.bash_profile'
+alias vialias='vi ~/.bash_profile'
+alias ls='ls -GFh'
+alias marc='ssh -p 31415 sruiz@161.116.138.71'
+alias pymol='/Applications/PyMOL.app/Contents/bin/pymol'
+alias maestro='/Applications/SchrodingerSuites2019-1/Maestro.app/Contents/MacOS/Maestro'
+alias rstudio='/Applications/RStudio.app/Contents/MacOS/RStudio'
+alias vmd='/Users/sruizcarmona/SOFT/vmd-bin/bin/vmd'
+alias gadi='ssh sc9986@gadi.nci.org.au'
+alias rmdsstore='find . -name ".DS_Store" -delete'
+alias combinePDF='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
+
+#EXTRA
+# for ctrl-cmd window drag
+##defaults write -g NSWindowShouldDragOnGesture -bool true
+# to disable
+## defaults delete -g NSWindowShouldDragOnGesture
+alias restarteqMac='sudo sh /Applications/eqMac.app/Contents/Resources/restart_coreaudio.sh'
+
+#path appends
+#python local libs
+#export PATH=$PATH:/Users/sruizcarmona/Library/Python/2.7/bin/
+
+#CHEMAXON
+export PATH=$PATH:/Applications/ChemAxon/JChemSuite/bin/
+
+#SCRIPTS UTILS
+export PATH=$PATH:/Users/sruizcarmona/Dropbox/BAKER/WORK/scripts/utils/
+
+#RDOCK
+export RBT_ROOT=/Users/sruizcarmona/SOFT/rDock
+export LD_LIBRARY_PATH=$RBT_ROOT/lib:$LD_LIBRARY_PATH
+export PATH=$PATH:$RBT_ROOT/bin
+
+#JEKYLL
+export PATH=$PATH:$HOME/.gem/ruby/2.6.0/bin
+
+#EXTRAS
+#export PYTHONSTARTUP=~/.pythonrc
+rsyncmarc(){
+        rsync -av -e "ssh -p 31415" $1 sruiz@161.116.138.71:$2
+}
+rsyncfrommarc(){
+        rsync -av -e "ssh -p 31415" sruiz@161.116.138.71:$1 $2
+}
+function remountSGC {
+    diskutil umount force /Users/sruizcarmona/sgcluster;
+#    diskutil umount force /Users/sruizcarmona/sgcluster_home;
+#    diskutil umount force /Users/sruizcarmona/sgcluster_workspace;
+    umount /Users/sruizcarmona/sgcluster;
+#    umount /Users/sruizcarmona/sgcluster_home;
+#    umount /Users/sruizcarmona/sgcluster_workspace;
+#    mkdir /Volumes/sgcluster;
+    sshfs sruizcarmona@sgcluster:. /Users/sruizcarmona/sgcluster -o,reconnect,defer_permissions,volname=sgcluster,follow_symlinks,noappledouble
+#    sshfs sruizcarmona@sgcluster:. /Users/sruizcarmona/sgcluster_home -o,reconnect,defer_permissions,volname=sgcluster,follow_symlinks,noappledouble
+#    sshfs sruizcarmona@sgcluster:/sysgen/workspace/users/sruizcarmona/ /Users/sruizcarmona/sgcluster_workspace -o,reconnect,defer_permissions,volname=workspace,follow_symlinks,noappledouble
+}
+
+# added by Miniconda3 4.5.12 installer
+# >>> conda init >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$(CONDA_REPORT_ERRORS=false '/Users/sruizcarmona/miniconda3/bin/conda' shell.bash hook 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    \eval "$__conda_setup"
+else
+    if [ -f "/Users/sruizcarmona/miniconda3/etc/profile.d/conda.sh" ]; then
+# . "/Users/sruizcarmona/miniconda3/etc/profile.d/conda.sh"  # commented out by conda initialize
+        CONDA_CHANGEPS1=false conda activate base
+    else
+        \export PATH="/Users/sruizcarmona/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda init <<<
+
+##
+# Your previous /Users/sruizcarmona/.bash_profile file was backed up as /Users/sruizcarmona/.bash_profile.macports-saved_2019-03-28_at_11:27:49
+##
+
+# MacPorts Installer addition on 2019-03-28_at_11:27:49: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.

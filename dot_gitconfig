@@ -1,0 +1,10 @@
+[user]
+     email = sruizcarmona@gmail.com
+     name = sruizcarmona
+[core]
+    editor = vim
+[url "ssh://git@github.com/"]
+    insteadOf = https://github.com/
+
+[init]
+	defaultBranch = main
